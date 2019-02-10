@@ -17,7 +17,7 @@ namespace MirrorExtension.Examples
 
         IEnumerator Initialize()
         {
-            yield return new WaitWhile(() => NetworkServer.active);
+            yield return new WaitUntil(() => NetworkServer.active);
 
             GameObject go = Instantiate(HumanPoseSynchronizerPrefab);
             NetworkServer.Spawn(go);
