@@ -3,28 +3,31 @@ using UnityEngine;
 using UniHumanoid;
 using Mirror;
 
-public class Initializer : MonoBehaviour
+namespace MirrorExtension.Examples
 {
-    [SerializeField] GameObject HumanPoseSynchronizerPrefab;
-    [SerializeField] HumanPoseTransfer m_source;
-
-    void Start()
+    public class Initializer : MonoBehaviour
     {
-        StartCoroutine(Initialize());
-    }
+        [SerializeField] GameObject HumanPoseSynchronizerPrefab;
+        [SerializeField] HumanPoseTransfer m_source;
 
-    IEnumerator Initialize()
-    {
-        yield return new WaitWhile(() => NetworkServer.active);
-
-        GameObject go = Instantiate(HumanPoseSynchronizerPrefab);
-        NetworkServer.Spawn(go);
-
-        HumanPoseTransfer m_target = go.GetComponent<HumanPoseTransfer>();
-        if (m_target != null)
+        void Start()
         {
-            m_target.Source = m_source;
-            m_target.SourceType = UniHumanoid.HumanPoseTransfer.HumanPoseTransferSourceType.HumanPoseTransfer;
+            StartCoroutine(Initialize());
+        }
+
+        IEnumerator Initialize()
+        {
+            yield return new WaitWhile(() => NetworkServer.active);
+
+            GameObject go = Instantiate(HumanPoseSynchronizerPrefab);
+            NetworkServer.Spawn(go);
+
+            HumanPoseTransfer m_target = go.GetComponent<HumanPoseTransfer>();
+            if (m_target != null)
+            {
+                m_target.Source = m_source;
+                m_target.SourceType = UniHumanoid.HumanPoseTransfer.HumanPoseTransferSourceType.HumanPoseTransfer;
+            }
         }
     }
 }
