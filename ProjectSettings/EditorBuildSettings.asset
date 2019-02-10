@@ -5,10 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/_SharedAssets/MirrorExtension/Examples/Scenes/HostMain.unity
     guid: b710d8dc46d112f4984fdee37dd8b51e
-  - enabled: 1
+  - enabled: 0
     path: Assets/_SharedAssets/MirrorExtension/Examples/Scenes/ClientMain.unity
     guid: 0e7b6185ebe51e24da5bf2b2a81871a0
   m_configObjects: {}

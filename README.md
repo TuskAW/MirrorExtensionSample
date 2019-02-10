@@ -14,3 +14,6 @@ You need to import the following assets.
 
 - [UniVRM v0.49](https://github.com/dwango/UniVRM/releases/tag/v0.49)  
 Licensed under the MIT License. Copyright (c) DWANGO Co., Ltd.  
+
+## References
+- [UNET NetworkDiscoveryでIPアドレスの入力を省く - MOTOYAMA BLOG](http://motoyama.hateblo.jp/entry/unet-networkdiscovery)
