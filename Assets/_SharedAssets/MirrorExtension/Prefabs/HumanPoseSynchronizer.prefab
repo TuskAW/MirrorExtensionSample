@@ -2716,6 +2716,7 @@ GameObject:
   - component: {fileID: 8988468090288528998}
   - component: {fileID: 8988468090288528996}
   - component: {fileID: 8988468090288528995}
+  - component: {fileID: 8896543025411349131}
   m_Layer: 0
   m_Name: HumanPoseSynchronizer
   m_TagString: Untagged
@@ -2804,7 +2805,7 @@ MonoBehaviour:
   m_SceneId: 0
   m_ServerOnly: 0
   m_LocalPlayerAuthority: 1
-  m_AssetId: 
+  m_AssetId: b84804981ee9a9843a23219b315ade6c
 --- !u!114 &8988468090288528998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2819,7 +2820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncInterval: 0.03333
   m_LerpEnabled: 1
-  m_FixedBodyPosition: 0
+  m_FixedBodyPosition: 1
 --- !u!114 &8988468090288528996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2905,6 +2906,21 @@ MonoBehaviour:
   - {fileID: 5604712711792057565}
   - {fileID: 5345858060613834352}
   Description: {fileID: 0}
+--- !u!114 &8896543025411349131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988468090288528999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 899f2b4fdeeed4c48852edfac97c2caf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncInterval: 0.03333
+  ParentObjectTagName: SharingRoot
+  SyncLocalRotation: 0
 --- !u!1 &9012612295106262464
 GameObject:
   m_ObjectHideFlags: 0

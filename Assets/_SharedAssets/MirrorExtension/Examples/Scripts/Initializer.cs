@@ -8,7 +8,7 @@ namespace MirrorExtension.Examples
     public class Initializer : MonoBehaviour
     {
         [SerializeField] GameObject HumanPoseSynchronizerPrefab;
-        [SerializeField] HumanPoseTransfer m_source;
+        [SerializeField] GameObject SourceObject;
 
         void Start()
         {
@@ -23,11 +23,15 @@ namespace MirrorExtension.Examples
             NetworkServer.Spawn(go);
 
             HumanPoseTransfer m_target = go.GetComponent<HumanPoseTransfer>();
+            HumanPoseTransfer m_source = SourceObject.GetComponent<HumanPoseTransfer>();
             if (m_target != null)
             {
                 m_target.Source = m_source;
                 m_target.SourceType = UniHumanoid.HumanPoseTransfer.HumanPoseTransferSourceType.HumanPoseTransfer;
             }
+
+            TransformSynchronizer synchronizer = go.AddComponent<TransformSynchronizer>();
+            synchronizer.SourceTransform = SourceObject.transform;
         }
     }
 }

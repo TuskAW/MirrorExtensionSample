@@ -55,7 +55,7 @@ namespace MirrorExtension
             }
         }
 
-        void Update()
+        void LateUpdate()
         {   
             // if server then always sync to others.
             if (isServer)
@@ -76,6 +76,11 @@ namespace MirrorExtension
         void UpdateSyncVars()
         {
             m_PoseHandler.GetHumanPose(ref m_NextPose);
+            if (m_FixedBodyPosition)
+            {
+                m_NextPose.bodyPosition = m_InitialBodyPosition;
+                m_PoseHandler.SetHumanPose(ref m_NextPose);
+            }
 
             bodyPosition = m_NextPose.bodyPosition;
             bodyRotation = m_NextPose.bodyRotation;
