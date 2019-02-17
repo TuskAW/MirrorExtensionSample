@@ -5,7 +5,7 @@ using Mirror;
 
 namespace MirrorExtension.Examples
 {
-    public class Initializer : MonoBehaviour
+    public class Initializer :MonoBehaviour
     {
         [SerializeField] GameObject HumanPoseSynchronizerPrefab;
         [SerializeField] GameObject SourceObject;
@@ -20,7 +20,7 @@ namespace MirrorExtension.Examples
             yield return new WaitUntil(() => NetworkServer.active);
 
             GameObject go = Instantiate(HumanPoseSynchronizerPrefab);
-            NetworkServer.Spawn(go);
+            NetworkServer.SpawnWithClientAuthority(go, NetworkServer.localConnection);
 
             HumanPoseTransfer m_target = go.GetComponent<HumanPoseTransfer>();
             HumanPoseTransfer m_source = SourceObject.GetComponent<HumanPoseTransfer>();

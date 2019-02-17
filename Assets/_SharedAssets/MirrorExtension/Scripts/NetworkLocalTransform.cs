@@ -31,7 +31,7 @@ namespace MirrorExtension
         void Update()
         {
             // if server then always sync to others.
-            if (isServer)
+            if (isServer && hasAuthority)
             {
                 UpdateSyncVars();
             }
@@ -39,6 +39,10 @@ namespace MirrorExtension
             // no 'else if' since host mode would be both
             if (isClient)
             {
+                if (!isServer && hasAuthority)
+                {
+                    CmdUpdateSyncVars(transform.localPosition, transform.localRotation);
+                }
                 if (!hasAuthority)
                 {
                     UpdateLocalTransformUsingSyncVars();
@@ -50,7 +54,13 @@ namespace MirrorExtension
         {
             localPosition = transform.localPosition;
             localRotation = (SyncLocalRotation) ? transform.localRotation : Quaternion.identity;
-            Debug.Log("LocalTransform:" + localPosition);
+        }
+
+        [Command]
+        void CmdUpdateSyncVars(Vector3 position, Quaternion rotation)
+        {
+            localPosition = position;
+            localRotation = (SyncLocalRotation) ? rotation : Quaternion.identity;
         }
 
         void UpdateLocalTransformUsingSyncVars()
