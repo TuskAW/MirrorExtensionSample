@@ -16,6 +16,7 @@ namespace MirrorExtension
         [SyncVar] Vector3 bodyPosition;
         [SyncVar] Quaternion bodyRotation;
         SyncListFloat muscles;
+        SyncListShort muscles_half;
 
         private float lastClientSendTime;
     
@@ -50,6 +51,7 @@ namespace MirrorExtension
                     for (int i = 0; i < m_SynchronizeMusclesCount; i++)
                     {
                         muscles.Add(0.0f);
+                        muscles_half.Add(0);
                     }
                 }
             }
@@ -87,6 +89,7 @@ namespace MirrorExtension
             for (int i = 0; i < m_SynchronizeMusclesCount; i++)
             {
                 muscles[i] = m_NextPose.muscles[i];
+                muscles_half[i] = SerializeFloat.FloatConverterExt.ToShort(m_NextPose.muscles[i]);
             }
         }
 
@@ -103,7 +106,15 @@ namespace MirrorExtension
             m_NextPose.bodyRotation = bodyRotation;
             for (int i = 0; i < m_SynchronizeMusclesCount; i++)
             {
-                m_NextPose.muscles[i] = muscles[i];
+                // m_NextPose.muscles[i] = muscles[i];
+                float half = SerializeFloat.FloatConverterExt.ToFloat(muscles_half[i]);
+                m_NextPose.muscles[i] = half;
+                
+                // Debug
+                // if(Mathf.Abs(muscles[i] - half) > 1)
+                // {
+                //     Debug.Log("muscles[" + i + "]: float = " + muscles[i] + ", half = " + half);
+                // }
             }
 
             // check only each 'syncInterval'
