@@ -42,7 +42,7 @@ namespace SerializeFloat
 
         public short ToShort()
         {
-            if (Value == 0) return 0;
+            if (Math.Abs(Value) < 0.0001f) return 0;
             var s = Value > 0 ? 0U : 1U;
             var e = (GetExponent()) - 127 + 15;
             var f = (GetFraction() >> 13) & 1023U;
